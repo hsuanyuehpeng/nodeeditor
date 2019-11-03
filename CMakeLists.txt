@@ -34,7 +34,7 @@ endif()
 add_subdirectory(external)
 
 # Find the QtWidgets library
-find_package(Qt5 5.3 COMPONENTS
+find_package(Qt5 5.13.1 COMPONENTS
              Core
              Widgets
              Gui

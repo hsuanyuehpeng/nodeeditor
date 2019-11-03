@@ -52,10 +52,21 @@ public:
   QString
   validationMessage() const override;
 
+  bool isInputValid(PortIndex port) const override final
+  {
+	  if(port == 0u)
+	  {
+		  return !!_number1.lock();
+	  }
+	  else
+	  {
+		  return !!_number2.lock();
+	  }
+  }
+
 protected:
 
-  virtual void
-  compute() = 0;
+  virtual void compute() = 0;
 
 protected:
 
