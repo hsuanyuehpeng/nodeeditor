@@ -109,6 +109,7 @@ contextMenuEvent(QContextMenuEvent *event)
   }
 
   QMenu modelMenu;
+  modelMenu.setStyleSheet("QMenu::item { height: 96px; margin: 0px; }");
 
   auto skipText = QStringLiteral("skip me");
 

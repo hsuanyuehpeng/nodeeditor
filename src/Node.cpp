@@ -34,11 +34,9 @@ Node(std::unique_ptr<NodeDataModel> && dataModel)
   _nodeGeometry.recalculateSize();
 
   // propagate data: model => node
-  connect(_nodeDataModel.get(), &NodeDataModel::dataUpdated,
-          this, &Node::onDataUpdated);
+  connect(_nodeDataModel.get(), &NodeDataModel::dataUpdated, this, &Node::onDataUpdated, _nodeDataModel->getConnectionType());
 
-  connect(_nodeDataModel.get(), &NodeDataModel::embeddedWidgetSizeUpdated,
-          this, &Node::onNodeSizeUpdated );
+  connect(_nodeDataModel.get(), &NodeDataModel::embeddedWidgetSizeUpdated, this, &Node::onNodeSizeUpdated );
 }
 
 

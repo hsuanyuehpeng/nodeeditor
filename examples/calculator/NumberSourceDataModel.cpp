@@ -7,16 +7,15 @@
 
 NumberSourceDataModel::
 NumberSourceDataModel()
-  : _lineEdit(new QLineEdit())
+	: _lineEdit(new QLineEdit())
 {
-  _lineEdit->setValidator(new QDoubleValidator());
+	_lineEdit->setValidator(new QDoubleValidator());
 
-  _lineEdit->setMaximumSize(_lineEdit->sizeHint());
+	_lineEdit->setMaximumSize(_lineEdit->sizeHint());
 
-  connect(_lineEdit, &QLineEdit::textChanged,
-          this, &NumberSourceDataModel::onTextEdited);
+	connect(_lineEdit, &QLineEdit::textChanged, this, &NumberSourceDataModel::onTextEdited);
 
-  _lineEdit->setText("0.0");
+	_lineEdit->setText("0.0");
 }
 
 
@@ -77,26 +76,23 @@ nPorts(PortType portType) const
 }
 
 
-void
-NumberSourceDataModel::
-onTextEdited(QString const &string)
+void NumberSourceDataModel::onTextEdited(QString const &string)
 {
-  Q_UNUSED(string);
+	Q_UNUSED(string);
 
-  bool ok = false;
+	bool ok = false;
 
-  double number = _lineEdit->text().toDouble(&ok);
+	double number = _lineEdit->text().toDouble(&ok);
 
-  if (ok)
-  {
-    _number = std::make_shared<DecimalData>(number);
-
-    Q_EMIT dataUpdated(0);
-  }
-  else
-  {
-    Q_EMIT dataInvalidated(0);
-  }
+	if (ok)
+	{
+		_number = std::make_shared<DecimalData>(number);
+		Q_EMIT dataUpdated(0);
+	}
+	else
+	{
+		Q_EMIT dataInvalidated(0);
+	}
 }
 
 

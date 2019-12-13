@@ -5,11 +5,24 @@
 using QtNodes::NodeDataModel;
 using QtNodes::NodeStyle;
 
-NodeDataModel::NodeDataModel() : _nodeStyle(StyleCollection::nodeStyle())
+NodeDataModel::NodeDataModel()
+	: NodeDataModel(Qt::AutoConnection)
 {
   // Derived classes can initialize specific style here
 }
 
+QtNodes::NodeDataModel::NodeDataModel(Qt::ConnectionType e)
+	: _nodeStyle(StyleCollection::nodeStyle())
+	, mConnectionType(e)
+{
+
+}
+
+
+Qt::ConnectionType QtNodes::NodeDataModel::getConnectionType() const
+{
+	return mConnectionType;
+}
 
 QJsonObject NodeDataModel::save() const
 {
